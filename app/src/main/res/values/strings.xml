@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">ChatApp</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
     <string name="title_activity_chat_list">ChatListActivity</string>
 </resources>
