@@ -1,8 +1,8 @@
 package com.example.chatapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.chatapp.Data.User
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
@@ -14,13 +14,15 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
+        //var user1= User(etUsername.text.toString(),etAge.text.toString().toInt(),etPassword.text.toString())
+
 
 
         btnSubmit.setOnClickListener() {
 
            /* val intent = Intent(this, DoRegister::class.java)
-            //var user1 = new user(etUsername.text,)
-            intent.putExtra("user", )
+            var user1= User(etUsername.text.toString(),etAge.text.toString().toInt(),etPassword.text.toString())
+            intent.putExtra("user", user1)
             startActivity(intent)*/
         }
 
