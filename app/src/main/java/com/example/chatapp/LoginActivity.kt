@@ -24,11 +24,13 @@ class LoginActivity : AppCompatActivity() {
 //            val intent = Intent(this@MainActivity, SecondActivity::class.java)
 //            intent.putExtra("key", "")
 //            startActivity(intent)
+            return true
         }else{
             val toast = Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT)
             toast.show()
+            return false
         }
-        return true
+
     }
-    
+
 }
