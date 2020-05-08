@@ -42,6 +42,11 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+        btnRegister.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     fun login(username: String, password: String) {
@@ -51,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
         db.collection("users").get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    if(document.data["name"].toString() == username && document.data["password"].toString() == password){
+                    if(document.data["username"].toString() == username && document.data["password"].toString() == password){
                         val intent = Intent(this, ChatListActivity::class.java)
                         intent.putExtra("key", "")
                         startActivity(intent)

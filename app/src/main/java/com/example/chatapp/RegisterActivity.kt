@@ -6,11 +6,12 @@ import android.widget.Toast
 import com.example.chatapp.data.User
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,10 +31,12 @@ class RegisterActivity : AppCompatActivity() {
     fun register(username: String, password: String, age: Int): Boolean {
 
         if(true){
-            database = FirebaseDatabase.getInstance().reference
 
             var user = User(username, password, age)
-            database.child("users").child(user.username!!).setValue(user)
+            val db = Firebase.firestore
+            val users = db.collection("users")
+            users.document(user.username.toString()).set(user)
+
 
             val toast = Toast.makeText(applicationContext, "New user registered", Toast.LENGTH_SHORT)
             toast.show()
