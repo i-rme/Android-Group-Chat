@@ -53,28 +53,18 @@ class LoginActivity : AppCompatActivity() {
 
         val db = Firebase.firestore
 
-        db.collection("users").get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    if(document.data["username"].toString() == username && document.data["password"].toString() == password){
+        db.collection("users").document(username).get()
+            .addOnSuccessListener { document ->
+
+                    if(document.data?.get("username") == username && document.data?.get("password") == password){
                         val intent = Intent(this, ChatListActivity::class.java)
-                        intent.putExtra("key", "")
+                        intent.putExtra("user", username)
                         startActivity(intent)
                     }else{
                         val toast = Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT)
                         toast.show()
-                        Log.d("", "bad job")
                     }
-                    Log.d("", username)
-                }
             }
-            .addOnFailureListener { exception ->
-                Log.w("", "Error getting documents.", exception)
-            }
-
-
     }
-
-
 
 }
