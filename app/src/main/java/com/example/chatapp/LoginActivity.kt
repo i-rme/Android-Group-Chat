@@ -1,16 +1,25 @@
 package com.example.chatapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
+import com.example.chatapp.data.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
-
+import kotlinx.android.synthetic.main.activity_login.etPassword
+import kotlinx.android.synthetic.main.activity_login.etUsername
+import kotlinx.android.synthetic.main.activity_register.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -23,46 +32,39 @@ class LoginActivity : AppCompatActivity() {
         login(etUsername.text.toString(), etPassword.text.toString())
         }
 
+        val username : EditText = etUsername
+        val password : EditText = etPassword
 
+        val loginButton : Button = findViewById(R.id.btnLogin)
 
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("message")
+        loginButton.setOnClickListener {
+            login(username.text.toString(), password.text.toString())
 
+        }
 
-
-        // Read from the database
-        // Read from the database
-        myRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) { // This method is called once with the initial value and again
-// whenever data at this location is updated.
-                val value =
-                    dataSnapshot.getValue(String::class.java)!!
-                Log.d("", "Value is: $value")
-            }
-
-            override fun onCancelled(error: DatabaseError) { // Failed to read value
-                Log.w("",  "Failed to read value.", error.toException())
-            }
-        })
-
-    }
-
-    fun login(username: String?, password: String?): Boolean {
-
-//        if(ContentProvider.login(User)){
-        if(true){
-//            val intent = Intent(this@MainActivity, SecondActivity::class.java)
-//            intent.putExtra("key", "")
-//            startActivity(intent)
-            return true
-        }else{
-            val toast = Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT)
-            toast.show()
-            return false
+        btnRegister.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
     }
 
+    fun login(username: String, password: String) {
 
+        val db = Firebase.firestore
+
+        db.collection("users").document(username).get()
+            .addOnSuccessListener { document ->
+
+                    if(document.data?.get("username") == username && document.data?.get("password") == password){
+                        val intent = Intent(this, ChatListActivity::class.java)
+                        intent.putExtra("user", username)
+                        startActivity(intent)
+                    }else{
+                        val toast = Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT)
+                        toast.show()
+                    }
+            }
+    }
 
 }
