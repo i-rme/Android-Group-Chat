@@ -19,7 +19,6 @@ class CreateChat : AppCompatActivity() {
         setContentView(R.layout.activity_create_chat)
 
 
-
         val db = Firebase.firestore
 
         val dbUsers= mutableListOf<User>()
@@ -30,16 +29,13 @@ class CreateChat : AppCompatActivity() {
             .addOnSuccessListener { result ->
                 for (document in result) {
 
-                    dbUsers.add(document as User)
+                    var user = User(document.data["username"] as String?,
+                        document.data["password"] as String?, 1
+                    )
+                    dbUsers.add(user)
 
                 }
             }
-
-
-
-
-
-
 
 
 
