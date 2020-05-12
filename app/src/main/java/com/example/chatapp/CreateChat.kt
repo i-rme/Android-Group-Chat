@@ -8,6 +8,7 @@ import com.example.chatapp.data.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_create_chat.*
+import java.text.FieldPosition
 
 class CreateChat : AppCompatActivity() {
 
@@ -28,7 +29,7 @@ class CreateChat : AppCompatActivity() {
         db.collection("users").get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-
+                    //Cast age to int because is a long
                     var user = User(document.data["username"] as String?,
                         document.data["password"] as String?, 1
                     )
@@ -55,6 +56,14 @@ class CreateChat : AppCompatActivity() {
         }
 
 
+
+
+
+
+
+    }
+
+    fun checkUserexist(user1: User){
 
 
 
