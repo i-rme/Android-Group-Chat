@@ -1,9 +1,14 @@
 package com.example.chatapp
 
 import com.example.chatapp.data.Message
+import com.example.chatapp.data.User
 import com.google.firebase.database.FirebaseDatabase
 
 object ChatProvider {
+
+    var messageList = mutableListOf<Message>()
+    var userList = mutableListOf<User>()
+
 
     fun postMessage(chatId: Int, message: Message) {
 
@@ -19,5 +24,19 @@ object ChatProvider {
 
          */
     }
+
+
+    fun addUser(user: User){
+        userList.add(user)
+    }
+
+    fun deleteChat(){
+
+    }
+    fun removeUser(){
+
+    }
+
+
 
 }
