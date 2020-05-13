@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlinx.android.synthetic.main.content_chat_list.*
 
 class ChatListActivity : AppCompatActivity() {
-    private var chatListAdapter = ChatListAdapter(this, ChatListProvider.chatList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
