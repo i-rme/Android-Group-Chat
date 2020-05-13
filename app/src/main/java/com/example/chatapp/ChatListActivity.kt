@@ -52,7 +52,7 @@ class ChatListActivity : AppCompatActivity() {
 
         lvChatList.setOnItemClickListener{parent, view, position, id ->
             val intent = Intent(this, ChatDetailActivity::class.java)
-            intent.putExtra("Chat_ID", id)
+            intent.putExtra("Chat_ID", ChatListProvider.chatList.get(position).id)
             startActivity(intent)
         }
 
