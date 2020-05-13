@@ -2,10 +2,15 @@ package com.example.chatapp
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-
+import com.example.chatapp.data.Chat
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_chat_list.*
+import kotlinx.android.synthetic.main.content_chat_list.*
 
 class ChatListActivity : AppCompatActivity() {
 
@@ -21,6 +26,37 @@ class ChatListActivity : AppCompatActivity() {
             val intent = Intent(this, CreateChat::class.java)
             startActivity(intent)
         }
+
+        //get Database
+        val db = FirebaseDatabase.getInstance().getReference("chats")
+            val eventListener = object : ValueEventListener{
+                override fun onDataChange(p0: DataSnapshot) {
+
+                    ChatListProvider.chatList.clear()
+                    for (postSnapshot in p0.children) {
+                        val chat = postSnapshot.getValue(Chat::class.java)
+                        if (chat != null) {
+                            ChatListProvider.addChat(chat)
+                        }
+                    }
+                    val chatListAdapter = ChatListAdapter(this@ChatListActivity, ChatListProvider.chatList)
+                    lvChatList.adapter = chatListAdapter
+
+                }
+                override fun onCancelled(p0: DatabaseError) {
+
+                }
+
+            }
+            db.addValueEventListener(eventListener)
+
+        lvChatList.setOnItemClickListener{parent, view, position, id ->
+            val intent = Intent(this, ChatDetailActivity::class.java)
+            intent.putExtra("Chat_ID", id)
+            startActivity(intent)
+        }
+
     }
+
 
 }
