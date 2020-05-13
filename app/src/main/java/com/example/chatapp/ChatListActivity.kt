@@ -1,16 +1,19 @@
 package com.example.chatapp
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.chatapp.data.Chat
-import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
-
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlinx.android.synthetic.main.content_chat_list.*
 
 class ChatListActivity : AppCompatActivity() {
+    private var chatListAdapter = ChatListAdapter(this, ChatListProvider.chatList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,32 +27,10 @@ class ChatListActivity : AppCompatActivity() {
 
         //get Database
         val db = FirebaseDatabase.getInstance().getReference("chats")
-        //check if chatlist is empty
-        if(ChatListProvider.chatList.isEmpty()){
-            val menuListener = object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val iter = dataSnapshot.children.iterator()
-                    if (iter.hasNext()){
-                        val chat = iter.next().getValue(Chat::class.java)
-                        if (chat != null) {
-                            ChatListProvider.addChat(chat)
-                        }
-                    }
-                    val chatListAdapter = ChatListAdapter(this@ChatListActivity, ChatListProvider.chatList)
-                    lvChatList.adapter = chatListAdapter
-                }
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // handle error
-                }
-            }
-            db.addValueEventListener(menuListener)
-
-        }else{
             val eventListener = object : ValueEventListener{
                 override fun onDataChange(p0: DataSnapshot) {
-                    val iter = p0.children.iterator()
-                    if (iter.hasNext()){
-                        val chat = iter.next().getValue(Chat::class.java)
+                    for (postSnapshot in p0.children) {
+                        val chat = postSnapshot.getValue(Chat::class.java)
                         if (chat != null) {
                             ChatListProvider.addChat(chat)
                         }
@@ -63,9 +44,19 @@ class ChatListActivity : AppCompatActivity() {
 
             }
             db.addValueEventListener(eventListener)
+
+        lvChatList.setOnItemClickListener{parent, view, position, id ->
+            val intent = Intent(this, ChatActivity::class.java)
+            intent.putExtra("Chat_ID", id)
+            startActivity(intent)
         }
 
+    }
 
+    override fun onResume() {
+        ChatListProvider.chatList.clear()
+        chatListAdapter.notifyDataSetChanged()
+        super.onResume()
     }
 
 
