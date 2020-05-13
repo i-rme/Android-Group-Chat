@@ -29,6 +29,8 @@ class ChatListActivity : AppCompatActivity() {
         val db = FirebaseDatabase.getInstance().getReference("chats")
             val eventListener = object : ValueEventListener{
                 override fun onDataChange(p0: DataSnapshot) {
+
+                    ChatListProvider.chatList.clear()
                     for (postSnapshot in p0.children) {
                         val chat = postSnapshot.getValue(Chat::class.java)
                         if (chat != null) {
@@ -37,6 +39,7 @@ class ChatListActivity : AppCompatActivity() {
                     }
                     val chatListAdapter = ChatListAdapter(this@ChatListActivity, ChatListProvider.chatList)
                     lvChatList.adapter = chatListAdapter
+
                 }
                 override fun onCancelled(p0: DatabaseError) {
 
@@ -51,14 +54,6 @@ class ChatListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-    }
-
-    override fun onResume() {
-        this@ChatListActivity.runOnUiThread{
-            ChatListProvider.chatList.clear()
-            chatListAdapter.notifyDataSetChanged()
-        }
-        super.onResume()
     }
 
 
