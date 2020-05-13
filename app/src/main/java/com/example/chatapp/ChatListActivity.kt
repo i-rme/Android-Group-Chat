@@ -48,7 +48,7 @@ class ChatListActivity : AppCompatActivity() {
             db.addValueEventListener(eventListener)
 
         lvChatList.setOnItemClickListener{parent, view, position, id ->
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, ChatDetailActivity::class.java)
             intent.putExtra("Chat_ID", id)
             startActivity(intent)
         }
