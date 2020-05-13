@@ -10,6 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ChatDetailActivity"></activity>
+        <activity android:name=".CreateChat"></activity>
         <activity android:name=".RegisterActivity" />
         <activity
             android:name=".ChatListActivity"
