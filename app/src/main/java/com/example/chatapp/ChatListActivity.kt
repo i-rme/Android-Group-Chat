@@ -54,8 +54,10 @@ class ChatListActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        ChatListProvider.chatList.clear()
-        chatListAdapter.notifyDataSetChanged()
+        this@ChatListActivity.runOnUiThread{
+            ChatListProvider.chatList.clear()
+            chatListAdapter.notifyDataSetChanged()
+        }
         super.onResume()
     }
 
