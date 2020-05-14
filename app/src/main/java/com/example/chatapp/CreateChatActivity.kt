@@ -2,6 +2,8 @@ package com.example.chatapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.example.chatapp.data.Chat
 import com.example.chatapp.data.User
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -28,7 +30,8 @@ class CreateChatActivity : AppCompatActivity() {
                             document.data["username"].toString(),
                             document.data["password"].toString(),
                             (document.data["age"] as Long).toInt()
-                        ))
+                        )
+                    )
                 }
                 val userListAdapter = CustomArrayAdapterUser(
                     this@CreateChatActivity,
@@ -38,22 +41,31 @@ class CreateChatActivity : AppCompatActivity() {
                 lvUsersOfNewChat.adapter = userListAdapter
             }
 
-//        lvUsersOfNewChat.setOnItemClickListener { parent, view, position, _ ->
-//
-//            if(!chatUsers.contains(allUsers[position])) {
-//                chatUsers.add(allUsers[position])
-//
-//                val toast = Toast.makeText(applicationContext, "User: " + allUsers[position].username + " added", Toast.LENGTH_SHORT)
-//                toast.show()
-//            }else{
-//                val toast1 = Toast.makeText(applicationContext, "User already added", Toast.LENGTH_SHORT)
-//                toast1.show()
-//            }
-//        }
+        lvUsersOfNewChat.setOnItemClickListener { parent, view, position, _ ->
+
+            if (!chatUsers.contains(allUsers[position])) {
+                chatUsers.add(allUsers[position])
+
+                val toast = Toast.makeText(
+                    applicationContext,
+                    "User: " + allUsers[position].username + " added",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
+            } else {
+                val toast1 =
+                    Toast.makeText(applicationContext, "User already added", Toast.LENGTH_SHORT)
+                toast1.show()
+            }
 
 
+        }
+
+
+        btnCreate.setOnClickListener(){
+            var chat= Chat("16",etNameNewChat.text.toString(),chatUsers)
+            ChatListProvider.postChat(chat)
+        }
 
     }
-
-
 }
