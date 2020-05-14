@@ -28,7 +28,7 @@ object ChatListProvider{
 
     fun createChat(chatName: String, user: User){
         ChatProvider.addUser(user)
-        chatList.add(Chat(chatName, ChatProvider.userList, ChatProvider.messageList))
+        chatList.add(Chat("idhere", chatName, ChatProvider.userList, ChatProvider.messageList))
     }
     fun addChat(chat: Chat){
         chatList.add(chat)

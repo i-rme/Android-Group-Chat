@@ -19,17 +19,16 @@ class ChatDetailActivity : AppCompatActivity() {
 
         val chatId = intent.getStringExtra("Chat_ID")
 
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_chat)
 
-        val db = FirebaseDatabase.getInstance().getReference("messages")
+        val db = FirebaseDatabase.getInstance().getReference("messages").child(chatId)
         val eventListener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 ChatProvider.messageList.clear()
                 for (postSnapshot in p0.children) {
-                    Log.d("", postSnapshot.value.toString())
-                    val message = postSnapshot.getValue(Message::class.java)
+                    val messageMap = postSnapshot.getValue() as Map<String, String>
+                    val message = Message(messageMap.get("user").toString(), messageMap.get("text").toString())
                     if (message != null) {
                         ChatProvider.addMessage(message)
                     }
