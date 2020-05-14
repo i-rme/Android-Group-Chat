@@ -44,5 +44,11 @@ class ChatDetailActivity : AppCompatActivity() {
         }
         db.addValueEventListener(eventListener)
 
+        btnSend.setOnClickListener{
+            if(etSendMessage.text != null){
+                ChatProvider.postMessage(chatId, Message("userDemo", etSendMessage.text.toString()))
+            }
+        }
+
     }
 }
