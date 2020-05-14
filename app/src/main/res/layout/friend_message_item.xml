@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:textSize="16sp"
-        android:textColor="white"
+        android:textColor="#FFFFFF"
         app:layout_constrainedWidth="true"
         app:layout_constraintStart_toEndOf="@+id/friend_avatar"
         app:layout_constraintTop_toTopOf="parent"

@@ -14,7 +14,7 @@
         android:id="@+id/message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="black"
+        android:textColor="#000000"
         android:textSize="15sp"
         android:padding="15dp"
         android:background="@drawable/my_bubble_shape"

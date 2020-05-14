@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.list_chat_item.view.*
+import kotlinx.android.synthetic.main.my_message_item.view.*
 
 
 class ChatDetailAdapter(private val context: Context, private val  messageList :MutableList<Message>)  : BaseAdapter() {
@@ -17,13 +18,13 @@ class ChatDetailAdapter(private val context: Context, private val  messageList :
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val message = getItem(position) as Message
 
-        val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.list_chat_item, parent, false)
+        val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.my_message_item, parent, false)
 
-        val tvChatName = rowView.tvChatNameList as TextView
-        val avatarChat = rowView.ivAvatarChat as ImageView
+        val tvmessage = rowView.message as TextView
+        //val avatarChat = rowView.ivAvatarChat as ImageView
 
-        tvChatName.text = message.text
-        avatarChat.setImageResource(R.mipmap.ic_launcher)
+        tvmessage.text = message.text
+        //avatarChat.setImageResource(R.mipmap.ic_launcher)
 
         return rowView
     }
