@@ -10,7 +10,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_create_chat.*
 import java.text.FieldPosition
 
-class CreateChat : AppCompatActivity() {
+class CreateChatActivity : AppCompatActivity() {
 
 
     lateinit var adapter: CustomArrayAdapterUser
@@ -29,7 +29,7 @@ class CreateChat : AppCompatActivity() {
         db.collection("users").get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    //Cast age to int because is a long
+
                     var user = User(
                         document.data["username"] as String,
                         document.data["password"] as String, (document.data["age"] as Long).toInt()
@@ -37,9 +37,9 @@ class CreateChat : AppCompatActivity() {
                     dbUsers.add(user)
 
                 }
+
+
             }
-
-
 
         setContentView(R.layout.activity_create_chat)
         adapter = CustomArrayAdapterUser(
@@ -47,10 +47,12 @@ class CreateChat : AppCompatActivity() {
             resourceId = R.layout.row_element,
             items = dbUsers
         )
-        lvUserNewChat.adapter = this.adapter
+        lvUsersOfNewChat.adapter = this.adapter
 
 
-        lvUserNewChat.setOnItemClickListener { parent, view, position, _ ->
+
+
+        lvUsersOfNewChat.setOnItemClickListener { parent, view, position, _ ->
 
             if(!usersNewChat.contains(dbUsers[position])) {
                 usersNewChat.add(dbUsers[position])
