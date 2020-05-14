@@ -1,6 +1,6 @@
 package com.example.chatapp.data
 
 data class Message (
-    val id: Int,
-    val user: User,
-    val text: String )
+    var id: String = "",
+    var user: User = User("", "" ,0),
+    var text: String = "")
