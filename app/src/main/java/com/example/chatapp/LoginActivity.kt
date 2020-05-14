@@ -9,6 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
+import com.example.chatapp.data.Chat
+import com.example.chatapp.data.Message
 import com.example.chatapp.data.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

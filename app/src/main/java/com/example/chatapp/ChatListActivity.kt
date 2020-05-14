@@ -27,7 +27,6 @@ class ChatListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //get Database
         val db = FirebaseDatabase.getInstance().getReference("chats")
             val eventListener = object : ValueEventListener{
                 override fun onDataChange(p0: DataSnapshot) {
