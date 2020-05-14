@@ -18,13 +18,10 @@ class ChatDetailAdapter(private val context: Context, private val  messageList :
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val message = getItem(position) as Message
 
-        val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.my_message_item, parent, false)
+        val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.friend_message_item, parent, false)
 
         val tvmessage = rowView.message as TextView
-        //val avatarChat = rowView.ivAvatarChat as ImageView
-
         tvmessage.text = message.text
-        //avatarChat.setImageResource(R.mipmap.ic_launcher)
 
         return rowView
     }
