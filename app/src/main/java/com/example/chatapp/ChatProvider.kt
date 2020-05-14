@@ -30,7 +30,9 @@ object ChatProvider {
     fun addUser(user: User){
         userList.add(user)
     }
-
+    fun addMessage(message: Message){
+        messageList.add(message)
+    }
     fun deleteChat(){
 
     }
