@@ -33,8 +33,9 @@ class ChatListActivity : AppCompatActivity() {
 
                     ChatListProvider.chatList.clear()
                     for (postSnapshot in p0.children) {
-                        val chat = postSnapshot.getValue(Chat::class.java)
+                        var chat = postSnapshot.getValue(Chat::class.java)
                         if (chat != null) {
+                            chat.id = postSnapshot.key.toString();
                             ChatListProvider.addChat(chat)
                         }
                     }
