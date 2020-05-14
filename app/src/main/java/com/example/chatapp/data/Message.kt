@@ -1,6 +1,5 @@
 package com.example.chatapp.data
 
 data class Message (
-    val id: Int,
-    val user: User,
+    val user: String,
     val text: String )
