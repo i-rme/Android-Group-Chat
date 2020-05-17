@@ -59,6 +59,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
 
                     if(document.data?.get("username") == username && document.data?.get("password") == password){
+                        ChatListProvider.username = username
                         val intent = Intent(this, ChatListActivity::class.java)
                         intent.putExtra("user", username)
                         startActivity(intent)

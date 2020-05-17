@@ -10,7 +10,7 @@ import com.google.firebase.database.FirebaseDatabase
 object ChatListProvider{
     private lateinit var database: DatabaseReference
     var chatList = mutableListOf<Chat>()
-
+    lateinit var username: String
 
     fun postChat(chat: Chat) {
 
