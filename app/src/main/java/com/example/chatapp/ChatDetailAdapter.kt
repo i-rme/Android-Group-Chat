@@ -16,12 +16,20 @@ class ChatDetailAdapter(private val context: Context, private val  messageList :
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val message = getItem(position) as Message
 
-        val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.message_item_left, parent, false)
 
-        val tvmessage = rowView.message as TextView
-        tvmessage.text = message.text
+        if (ChatListProvider.username == message.user){
+            val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.message_item_left, parent, false)
+            val tvmessage = rowView.message as TextView
+            tvmessage.text = message.text
+            return rowView
 
-        return rowView
+        }else{
+            val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.message_item_right, parent, false)
+            val tvmessage = rowView.message as TextView
+            tvmessage.text = message.text
+            return rowView
+
+        }
     }
 
     override fun getItem(position: Int): Any {

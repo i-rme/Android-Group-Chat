@@ -16,7 +16,7 @@ object ChatProvider {
 
         val database = FirebaseDatabase.getInstance().reference
         database.child("messages").child(chatId).push().setValue(message)
-
+        addMessage(message)
         /*
             USAGE
 

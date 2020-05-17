@@ -46,7 +46,7 @@ class ChatDetailActivity : AppCompatActivity() {
 
         btnSend.setOnClickListener{
             if(etSendMessage.text != null){
-                ChatProvider.postMessage(chatId, Message("userDemo", etSendMessage.text.toString()))
+                ChatProvider.postMessage(chatId, Message(ChatListProvider.username, etSendMessage.text.toString()))
             }
         }
 
