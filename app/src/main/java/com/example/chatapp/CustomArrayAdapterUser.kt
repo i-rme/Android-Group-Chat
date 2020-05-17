@@ -1,4 +1,4 @@
-package com.example.chatapp.data
+package com.example.chatapp
 
 import android.content.Context
 import android.util.Log
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.example.chatapp.data.User
 import kotlinx.android.synthetic.main.row_element.view.*
 
 class CustomArrayAdapterUser : ArrayAdapter<User> {
@@ -30,14 +31,12 @@ class CustomArrayAdapterUser : ArrayAdapter<User> {
             if(view == null) {
                 val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
                 view = inflater.inflate(resourceId, null)
-                Log.d("ADAPTER NEW VIEW", "New view ${System.currentTimeMillis() - timestamp}")
                 val viewHolder =
                     ViewHolder()
                 viewHolder.text1 = view.text1 as TextView
                 viewHolder.text2 = view.text2 as TextView
                 view.tag = viewHolder
             } else {
-                Log.d("ADAPTER REUSED VIEW", "Reused view ${System.currentTimeMillis() - timestamp}")
             }
             val value = getItem(position)
             val holder = view!!.tag as ViewHolder

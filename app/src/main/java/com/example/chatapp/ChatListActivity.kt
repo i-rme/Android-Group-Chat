@@ -23,7 +23,7 @@ class ChatListActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
 
-            val intent = Intent(this, CreateChat::class.java)
+            val intent = Intent(this, CreateChatActivity::class.java)
             startActivity(intent)
         }
 

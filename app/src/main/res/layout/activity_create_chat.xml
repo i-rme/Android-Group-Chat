@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateChat">
+    tools:context=".CreateChatActivity">
 
     <TextView
         android:id="@+id/tvNameNewChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="117dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="88dp"
         android:text="Chat name:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,22 +20,32 @@
         android:id="@+id/etNameNewChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="102dp"
-        android:layout_marginEnd="41dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="36dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/lvUserNewChat"
+        android:id="@+id/lvUsersOfNewChat"
         android:layout_width="409dp"
-        android:layout_height="520dp"
+        android:layout_height="400dp"
         android:layout_marginStart="1dp"
-        android:layout_marginBottom="43dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNameNewChat" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="10dp"
+        android:text="Create"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lvUsersOfNewChat" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
