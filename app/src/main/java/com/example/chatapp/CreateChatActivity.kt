@@ -63,8 +63,8 @@ class CreateChatActivity : AppCompatActivity() {
 
 
         btnCreate.setOnClickListener(){
-            var chat= Chat("16",etNameNewChat.text.toString(),chatUsers)
-            ChatListProvider.postChat(chat)
+            var chat= Chat(etNameNewChat.text.toString())
+            ChatListProvider.postChat(chat, chatUsers)
         }
 
     }

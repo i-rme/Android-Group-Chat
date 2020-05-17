@@ -1,5 +1,7 @@
 package com.example.chatapp
 
+import android.util.Log
+import android.widget.Toast
 import com.example.chatapp.data.Chat
 import com.example.chatapp.data.Message
 import com.example.chatapp.data.User
@@ -12,26 +14,27 @@ object ChatListProvider{
     var chatList = mutableListOf<Chat>()
 
 
-    fun postChat(chat: Chat) {
+    fun postChat(chat: Chat, userlist: MutableList<User>) {
 
         val database = FirebaseDatabase.getInstance().reference
-        database.child("chats").push().setValue(chat)
+        var pushedRef = database.child("chats").push()
+        pushedRef.setValue(chat)
 
-        /*
-            USAGE
+        var stringlist = mutableListOf<String>();
+        for (user in userlist) {
+            stringlist.add(user.username.toString());
+        }
 
-            var chat = Chat("ChatNameOne")
-            ChatListProvider.postChat(chat)
+        database.child("users").child(pushedRef.getKey().toString()).setValue(stringlist)
 
-         */
     }
 
     fun createChat(chatName: String, user: User){
-        ChatProvider.addUser(user)
-        chatList.add(Chat("idhere", chatName, ChatProvider.userList, ChatProvider.messageList))
+        //ChatProvider.addUser(user)
+        //chatList.add(Chat("idhere", chatName, ChatProvider.userList, ChatProvider.messageList))
     }
     fun addChat(chat: Chat){
-        chatList.add(chat)
+        //chatList.add(chat)
     }
 
 }
