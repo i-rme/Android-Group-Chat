@@ -4,6 +4,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.chatapp.data.Message
 import com.example.chatapp.data.User
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
@@ -36,8 +37,9 @@ object ChatProvider {
     fun deleteChat(){
 
     }
-    fun removeUser(){
-
+    fun removeUser(username: String, chatId: String){
+        val database: DatabaseReference =FirebaseDatabase.getInstance().reference
+        database.child("chats").child(chatId).child("users").child(username).removeValue();
     }
 
 }
