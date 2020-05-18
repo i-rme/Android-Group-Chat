@@ -17,13 +17,7 @@ object ChatProvider {
         val database = FirebaseDatabase.getInstance().reference
         database.child("messages").child(chatId).push().setValue(message)
         addMessage(message)
-        /*
-            USAGE
 
-            var message = Message("userstring", "textinside")
-            ChatProvider.postMessage("chatidGoesHere213", message)
-
-         */
     }
 
 
