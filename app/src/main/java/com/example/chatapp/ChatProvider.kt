@@ -39,10 +39,9 @@ object ChatProvider {
     }
 
     fun removeUser(username: String, chatId: String){
-        val database:DatabaseReference=FirebaseDatabase.getInstance().reference
-       //esto va database.child("users").child(chatId).child("0").removeValue();
 
-       //try it to do it database.child("users").child(chatId).limitToLast(0)
+        val database:DatabaseReference=FirebaseDatabase.getInstance().reference
+        database.child("chats").child(chatId).child("users").child(username).removeValue();
 
     }
 
