@@ -20,12 +20,13 @@ object ChatListProvider{
         var pushedRef = database.child("chats").push()
         pushedRef.setValue(chat)
 
-        var stringlist = mutableListOf<String>();
+        val stringMap = mutableMapOf<String, String>()
+
         for (user in userlist) {
-            stringlist.add(user.username.toString());
+            stringMap.put(user.username.toString(), "")
         }
         chatList.add(chat)
-        database.child("users").child(pushedRef.getKey().toString()).setValue(stringlist)
+        database.child("chats").child(pushedRef.getKey().toString()).child("users").setValue(stringMap)
 
     }
 
