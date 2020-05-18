@@ -31,7 +31,7 @@ class ChatListActivity : AppCompatActivity() {
                     ChatListProvider.chatList.clear()
                     for (postSnapshot in p0.children) {
                         var chat = postSnapshot.getValue(Chat::class.java)
-                        if (chat != null) {
+                        if (chat != null && chat.users.containsKey(ChatListProvider.username)) {
                             chat.id = postSnapshot.key.toString();
                             ChatListProvider.addChat(chat)
                         }

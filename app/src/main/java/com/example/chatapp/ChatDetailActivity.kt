@@ -54,5 +54,8 @@ class ChatDetailActivity : AppCompatActivity() {
             }
         }
 
+        btnBack.setOnClickListener {
+            finish()
+        }
     }
 }
