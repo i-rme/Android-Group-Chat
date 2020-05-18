@@ -24,7 +24,7 @@ object ChatListProvider{
         for (user in userlist) {
             stringlist.add(user.username.toString());
         }
-
+        chatList.add(chat)
         database.child("users").child(pushedRef.getKey().toString()).setValue(stringlist)
 
     }
@@ -34,7 +34,7 @@ object ChatListProvider{
         //chatList.add(Chat("idhere", chatName, ChatProvider.userList, ChatProvider.messageList))
     }
     fun addChat(chat: Chat){
-        //chatList.add(chat)
+        chatList.add(chat)
     }
 
 }

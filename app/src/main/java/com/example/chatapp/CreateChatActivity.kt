@@ -1,5 +1,6 @@
 package com.example.chatapp
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -11,7 +12,6 @@ import kotlinx.android.synthetic.main.activity_create_chat.*
 
 class CreateChatActivity : AppCompatActivity() {
 
-    lateinit var adapter: CustomArrayAdapterUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,15 +33,12 @@ class CreateChatActivity : AppCompatActivity() {
                         )
                     )
                 }
-                val userListAdapter = CustomArrayAdapterUser(
-                    this@CreateChatActivity,
-                    R.layout.row_element,
-                    allUsers
-                )
-                lvUsersOfNewChat.adapter = userListAdapter
+                    val userListAdapter = CustomArrayAdapterUser(this@CreateChatActivity, R.layout.row_element, allUsers)
+                    lvUsersOfNewChat.adapter = userListAdapter
             }
 
         lvUsersOfNewChat.setOnItemClickListener { parent, view, position, _ ->
+            lvUsersOfNewChat.getChildAt(position).setBackgroundColor(Color.GRAY)
 
             if (!chatUsers.contains(allUsers[position])) {
                 chatUsers.add(allUsers[position])
@@ -65,6 +62,7 @@ class CreateChatActivity : AppCompatActivity() {
         btnCreate.setOnClickListener(){
             var chat= Chat(etNameNewChat.text.toString())
             ChatListProvider.postChat(chat, chatUsers)
+            finish()
         }
 
     }

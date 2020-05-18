@@ -27,6 +27,7 @@ class CustomArrayAdapterUser : ArrayAdapter<User> {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             var view = convertView
+
             val timestamp = System.currentTimeMillis()
             if(view == null) {
                 val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
