@@ -45,8 +45,12 @@ class ChatDetailActivity : AppCompatActivity() {
         db.addValueEventListener(eventListener)
 
         btnSend.setOnClickListener{
-            if(etSendMessage.text != null){
+            if(etSendMessage.text.toString() != ""){
                 ChatProvider.postMessage(chatId, Message(ChatListProvider.username, etSendMessage.text.toString()))
+                etSendMessage.setText("")
+            }else{
+                val toast = Toast.makeText(applicationContext, "Write something before sending.", Toast.LENGTH_SHORT)
+                toast.show()
             }
         }
 
