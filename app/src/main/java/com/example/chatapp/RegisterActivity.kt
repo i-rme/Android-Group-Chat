@@ -23,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
             intent.putExtra("user", user1)
             startActivity(intent)*/
             register(etUsername.text.toString(), etPassword.text.toString(), etAge.text.toString().toInt())
-
+            finish()
         }
 
     }
