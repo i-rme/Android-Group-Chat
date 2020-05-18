@@ -40,7 +40,10 @@ class LoginActivity : AppCompatActivity() {
         val loginButton : Button = findViewById(R.id.btnLogin)
 
         loginButton.setOnClickListener {
-            login(username.text.toString(), password.text.toString())
+            //I am trying here
+            //login(username.text.toString(), password.text.toString())
+            //ChatProvider.removeUser("elon","-M7XTAsO10HI58zxRyyL")
+
 
         }
 
