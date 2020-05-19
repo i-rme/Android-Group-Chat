@@ -4,7 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1b1b2f"
     tools:context=".LoginActivity">
+
+    <TextView
+    android:id="@+id/tvEmoji"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="24dp"
+    android:text="💬"
+    android:textSize="64sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etUsername"
@@ -15,10 +27,12 @@
         android:ems="10"
         android:hint="@string/username"
         android:inputType="textPersonName"
-        android:text="dummy"
+        android:text="@string/dummy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:backgroundTint="#2E5E98"
+        android:textColor="#B3E5FC"/>
 
     <EditText
         android:id="@+id/etPassword"
@@ -29,18 +43,25 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:text="dummy"
+        android:text="@string/dummy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/etUsername"
+        android:backgroundTint="#2E5E98"
+        android:textColor="#B3E5FC"/>
 
     <TextView
         android:id="@+id/tvMain"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:text="@string/login"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/welcome_to_chatapp_if_you_have_an_account_proceed_to_login_if_not_tap_register_to_create_one"
+        android:textColor="#B3E5FC"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,16 +74,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
+        android:backgroundTint="#2E5E98"
+        android:textColor="#B3E5FC"/>
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:text="@string/register"
+        android:layout_marginTop="496dp"
+        android:backgroundTint="#2E5E98"
+        android:text="@string/register_new_account"
+        android:textColor="#B3E5FC"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
