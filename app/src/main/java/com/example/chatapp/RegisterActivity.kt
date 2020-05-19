@@ -18,12 +18,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
 
         btnSubmit.setOnClickListener() {
-
-           /* val intent = Intent(this, DoRegister::class.java)
-            intent.putExtra("user", user1)
-            startActivity(intent)*/
             register(etUsername.text.toString(), etPassword.text.toString(), etAge.text.toString().toInt())
-
+            finish()
         }
 
     }
