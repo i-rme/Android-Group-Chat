@@ -53,6 +53,19 @@ class ChatListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+
+        lvChatList.setOnItemLongClickListener{ parent, view, position, _ ->
+            val intent = Intent(this, EditChatActivity::class.java)
+            intent.putExtra("Chat_ID", ChatListProvider.chatList.get(position).id)
+            startActivity(intent)
+            return@setOnItemLongClickListener true
+        }
+
+
+
+
+
     }
 
 
