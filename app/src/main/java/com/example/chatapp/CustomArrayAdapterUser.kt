@@ -42,7 +42,7 @@ class CustomArrayAdapterUser : ArrayAdapter<User> {
             val value = getItem(position)
             val holder = view!!.tag as ViewHolder
             holder.text1.text = "Username: ${value!!.username}"
-            holder.text2.text = "Age ${value!!.age}"
+            holder.text2.text = "Age: ${value!!.age}"
             //Log.d("ADAPTER GET VIEW", value!!.)
             return view
         }

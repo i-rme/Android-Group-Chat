@@ -17,7 +17,11 @@ class ChatListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_list)
+
         setSupportActionBar(toolbar)
+
+        getActionBar()?.setTitle("Chat List");
+        getSupportActionBar()?.setTitle("Chat List");  // provide compatibility
 
         fab.setOnClickListener { view ->
             val intent = Intent(this, CreateChatActivity::class.java)
@@ -50,6 +54,7 @@ class ChatListActivity : AppCompatActivity() {
         lvChatList.setOnItemClickListener{parent, view, position, id ->
             val intent = Intent(this, ChatDetailActivity::class.java)
             intent.putExtra("Chat_ID", ChatListProvider.chatList.get(position).id)
+            intent.putExtra("Chat_Name", ChatListProvider.chatList.get(position).chatName)
             startActivity(intent)
         }
 
@@ -58,6 +63,7 @@ class ChatListActivity : AppCompatActivity() {
         lvChatList.setOnItemLongClickListener{ parent, view, position, _ ->
             val intent = Intent(this, EditChatActivity::class.java)
             intent.putExtra("Chat_ID", ChatListProvider.chatList.get(position).id)
+            intent.putExtra("Chat_Name", ChatListProvider.chatList.get(position).chatName)
             startActivity(intent)
             return@setOnItemLongClickListener true
         }

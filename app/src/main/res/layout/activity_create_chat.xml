@@ -8,12 +8,24 @@
     tools:context=".CreateChatActivity">
 
     <TextView
+        android:id="@+id/tvEmoji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="➕"
+        android:textSize="64sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tvNameNewChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="119dp"
         android:text="Chat name:"
+        android:textColor="#B3E5FC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,18 +33,25 @@
         android:id="@+id/etNameNewChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="106dp"
         android:layout_marginEnd="36dp"
+        android:backgroundTint="#2E5E98"
         android:ems="10"
+        android:hint="Chat Name"
         android:inputType="textPersonName"
+        android:textColor="#B3E5FC"
+        android:textColorHint="#80B3E5FC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lvUsersOfNewChat"
         android:layout_width="0dp"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:textColor="#B3E5FC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNameNewChat" />
@@ -41,8 +60,10 @@
         android:id="@+id/btnCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#2E5E98"
         android:text="Create"
+        android:textColor="#B3E5FC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvUsersOfNewChat" />

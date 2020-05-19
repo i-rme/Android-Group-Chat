@@ -4,7 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1b1b2f"
     tools:context=".EditChatActivity">
+
+    <TextView
+        android:id="@+id/tvEmoji"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="🖋️"
+        android:textSize="64sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvEditName"
@@ -14,16 +26,21 @@
         android:layout_marginTop="119dp"
         android:text="Insert new name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#B3E5FC"/>
 
     <EditText
         android:id="@+id/etEditName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="106dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="#2E5E98"
         android:ems="10"
+        android:hint="Chat Name"
         android:inputType="textPersonName"
+        android:textColor="#B3E5FC"
+        android:textColorHint="#80B3E5FC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,15 +54,17 @@
         android:text="Edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/lvEdit"
+        android:backgroundTint="#2E5E98"
+        android:textColor="#B3E5FC"/>
 
     <ListView
         android:id="@+id/lvEdit"
-        android:layout_width="409dp"
-        android:layout_height="420dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="0dp"
+        android:layout_height="350dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/btnEdit"
         app:layout_constraintEnd_toEndOf="parent"

@@ -11,6 +11,8 @@
         android:id="@+id/lvDetailChat"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
         android:layout_marginBottom="48dp"
         android:divider="#FFCC00"
         android:dividerHeight="0px"
@@ -32,7 +34,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lvDetailChat"
         android:backgroundTint="#2E5E98"
-        android:textColor="#B3E5FC"/>
+        android:textColor="#B3E5FC"
+        android:textColorHint="#80B3E5FC"/>
 
     <ImageButton
         android:id="@+id/btnSend"
