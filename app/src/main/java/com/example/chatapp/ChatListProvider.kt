@@ -38,4 +38,21 @@ object ChatListProvider{
         chatList.add(chat)
     }
 
+
+
+    fun updateChat(chat: Chat, userlist: MutableList<User>,chatid: String) {
+
+        val database = FirebaseDatabase.getInstance().reference
+        var pushedRef = database.child("chats").child(chatid)
+        pushedRef.setValue(chat)
+
+        val stringMap = mutableMapOf<String, String>()
+
+        for (user in userlist) {
+            stringMap.put(user.username.toString(), "")
+        }
+        chatList.add(chat)
+        database.child("chats").child(pushedRef.getKey().toString()).child("users").setValue(stringMap)
+
+    }
 }
