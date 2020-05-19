@@ -14,7 +14,8 @@
         android:layout_marginTop="32dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/ivAvatarChat"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#B3E5FC"/>
 
     <ImageView
         android:id="@+id/ivAvatarChat"

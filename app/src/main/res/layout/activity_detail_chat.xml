@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1b1b2f"
     tools:context=".ChatDetailActivity">
 
     <ListView
@@ -29,7 +30,9 @@
         android:hint="Write here..."
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lvDetailChat" />
+        app:layout_constraintTop_toBottomOf="@+id/lvDetailChat"
+        android:backgroundTint="#2E5E98"
+        android:textColor="#B3E5FC"/>
 
     <ImageButton
         android:id="@+id/btnSend"
@@ -47,9 +50,11 @@
         android:layout_height="wrap_content"
         android:text="Back"
         tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="2dp" />
+        tools:layout_editor_absoluteY="2dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#B3E5FC"
+        android:backgroundTint="#2E5E98"/>
 
     <Button
         android:id="@+id/btnLeave"
@@ -57,5 +62,7 @@
         android:layout_height="wrap_content"
         android:text="Leave"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#B3E5FC"
+        android:backgroundTint="#2E5E98"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
