@@ -41,7 +41,8 @@ class LoginActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             login(username.text.toString(), password.text.toString())
-
+            //How works remove user
+            //ChatProvider.removeUser("elon","-M7XTAsO10HI58zxRyyL")
         }
 
         btnRegister.setOnClickListener{

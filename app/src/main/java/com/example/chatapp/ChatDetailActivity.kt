@@ -54,5 +54,15 @@ class ChatDetailActivity : AppCompatActivity() {
             }
         }
 
+        btnBack.setOnClickListener {
+            finish()
+        }
+
+        btnLeave.setOnClickListener {
+            ChatProvider.removeUser(ChatListProvider.username, chatId)
+            val toast = Toast.makeText(applicationContext, "You have left the chat.", Toast.LENGTH_SHORT)
+            toast.show()
+            finish()
+        }
     }
 }
