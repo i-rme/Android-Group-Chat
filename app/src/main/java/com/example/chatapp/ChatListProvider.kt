@@ -13,6 +13,7 @@ object ChatListProvider{
     private lateinit var database: DatabaseReference
     var chatList = mutableListOf<Chat>()
     lateinit var username: String
+    var CHATTING = true;
 
     fun postChat(chat: Chat, userlist: MutableList<User>) {
 
