@@ -17,6 +17,9 @@ class CreateChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_chat)
 
+        getActionBar()?.setTitle("Chat Creation");
+        getSupportActionBar()?.setTitle("Chat Creation");  // provide compatibility
+
         val db = Firebase.firestore
         val allUsers = mutableListOf<User>()
         val chatUsers = mutableListOf<User>()
@@ -43,12 +46,12 @@ class CreateChatActivity : AppCompatActivity() {
             if (!chatUsers.contains(allUsers[position])) {
                 chatUsers.add(allUsers[position])
 
-                val toast = Toast.makeText(
-                    applicationContext,
-                    "User: " + allUsers[position].username + " added",
-                    Toast.LENGTH_SHORT
-                )
-                toast.show()
+//                val toast = Toast.makeText(
+//                    applicationContext,
+//                    "User: " + allUsers[position].username + " added",
+//                    Toast.LENGTH_SHORT
+//                )
+//                toast.show()
             } else {
                 val toast1 =
                     Toast.makeText(applicationContext, "User already added", Toast.LENGTH_SHORT)

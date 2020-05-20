@@ -18,6 +18,7 @@ class ChatDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         val chatId = intent.getStringExtra("Chat_ID")
+        val chatName = intent.getStringExtra("Chat_Name")
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_chat)
@@ -25,6 +26,10 @@ class ChatDetailActivity : AppCompatActivity() {
         val db = FirebaseDatabase.getInstance().getReference("messages").child(chatId)
         val eventListener = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
+
+                getActionBar()?.setTitle(chatName);
+                getSupportActionBar()?.setTitle(chatName);  // provide compatibility
+
                 ChatProvider.messageList.clear()
                 for (postSnapshot in p0.children) {
                     val messageMap = postSnapshot.getValue() as Map<String, String>

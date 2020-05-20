@@ -9,11 +9,13 @@
         android:layout_width="0in"
         android:layout_height="wrap_content"
         android:layout_weight="5"
-        android:id="@+id/text1"/>
+        android:id="@+id/text1"
+        android:textColor="#B3E5FC"/>
     
     <TextView 
         android:layout_width="0in"
         android:layout_height="wrap_content"
         android:layout_weight="5"
-        android:id="@+id/text2"/>
+        android:id="@+id/text2"
+        android:textColor="#B3E5FC"/>
 </LinearLayout>
