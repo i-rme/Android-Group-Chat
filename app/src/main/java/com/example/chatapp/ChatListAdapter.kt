@@ -27,12 +27,11 @@ class ChatListAdapter(private val context: Context, private val chatList :Mutabl
         var imageList = ArrayList<Int>()
         imageList = initImageList(imageList)
         val index = randomGenerator.nextInt(imageList.size)
-
+        Log.v("IMAGE SELECTION: ", "$index")
         val tvChatName = rowView.tvChatNameList as TextView
         val avatarChat = rowView.ivAvatarChat as ImageView
 
         tvChatName.text = chat.chatName
-        Log.v("IMAGE SELECTION: ", "$index")
         avatarChat.setImageResource(imageList[index])
 
         return rowView
@@ -50,10 +49,9 @@ class ChatListAdapter(private val context: Context, private val chatList :Mutabl
         return chatList.size
     }
 
-    fun initImageList(imageList: ArrayList<Int>) : ArrayList<Int>{
-        imageList.add(R.mipmap.ic_launcher)
-        imageList.add(R.drawable.ic_launcher_foreground)
-        imageList.add(R.drawable.ic_people_white_24dp)
+    private fun initImageList(imageList: ArrayList<Int>) : ArrayList<Int>{
+        imageList.add(R.mipmap.ic_launcher_green_round)
+        imageList.add(R.mipmap.ic_launcher_red_round)
         return imageList
     }
 
