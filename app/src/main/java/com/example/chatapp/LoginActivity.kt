@@ -30,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        ChatListProvider.CHATTING = false
+
         btnLogin.setOnClickListener {
         login(etUsername.text.toString(), etPassword.text.toString())
         }
@@ -69,6 +71,11 @@ class LoginActivity : AppCompatActivity() {
                         toast.show()
                     }
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ChatListProvider.CHATTING = false
     }
 
 }

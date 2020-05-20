@@ -17,6 +17,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        getActionBar()?.setTitle("Registration");
+        getSupportActionBar()?.setTitle("Registration");  // provide compatibility
+
         btnSubmit.setOnClickListener() {
             register(etUsername.text.toString(), etPassword.text.toString(), etAge.text.toString().toInt())
             finish()
