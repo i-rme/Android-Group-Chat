@@ -50,8 +50,10 @@ class CreateChatActivity : AppCompatActivity() {
                 )
                 toast.show()
             } else {
+                chatUsers.remove(allUsers[position])
+                lvUsersOfNewChat.getChildAt(position).setBackgroundColor(0x1b1b2f)
                 val toast1 =
-                    Toast.makeText(applicationContext, "User already added", Toast.LENGTH_SHORT)
+                    Toast.makeText(applicationContext, "User ${allUsers[position].username} removed", Toast.LENGTH_SHORT)
                 toast1.show()
             }
 
