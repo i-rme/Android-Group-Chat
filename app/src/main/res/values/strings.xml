@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ChatApp</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="title_activity_chat_list">ChatListActivity</string>
+    <string name="register">Register</string>
+    <string name="dummy">dummy</string>
+    <string name="register_new_account">REGISTER NEW ACCOUNT</string>
+    <string name="welcome_to_chatapp_if_you_have_an_account_proceed_to_login_if_not_tap_register_to_create_one">Welcome to ChatApp, if you have an account proceed to login, if not tap Register to create one.</string>
 </resources>
