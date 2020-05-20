@@ -24,6 +24,8 @@ class ChatDetailAdapter(private val context: Context, private val  messageList :
         }else{
             val rowView = convertView ?: LayoutInflater.from(context).inflate(R.layout.message_item_left, parent, false)
             val tvmessage = rowView.message as TextView
+            val tvUsername = rowView.tvUsername as TextView
+            tvUsername.text = message.user
             tvmessage.text = message.text
             return rowView
 
