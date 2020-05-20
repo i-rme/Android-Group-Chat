@@ -9,15 +9,19 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.example.chatapp.adapter.ChatListAdapter
 import com.example.chatapp.data.Chat
+import com.example.chatapp.provider.ChatListProvider
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlinx.android.synthetic.main.content_chat_list.*
-import kotlin.random.Random
 
+/**
+ * A chat list from all the chats
+ */
 class ChatListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,29 +39,34 @@ class ChatListActivity : AppCompatActivity() {
         }
 
         val db = FirebaseDatabase.getInstance().getReference("chats")
-            val eventListener = object : ValueEventListener{
-                override fun onDataChange(p0: DataSnapshot) {
+        val eventListener = object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
 
-                    ChatListProvider.chatList.clear()
-                    for (postSnapshot in p0.children) {
-                        var chat = postSnapshot.getValue(Chat::class.java)
-                        if (chat != null && chat.users.containsKey(ChatListProvider.username)) {
-                            chat.id = postSnapshot.key.toString();
-                            ChatListProvider.addChat(chat)
-                        }
+                ChatListProvider.chatList.clear()
+                for (postSnapshot in p0.children) {
+                    var chat = postSnapshot.getValue(Chat::class.java)
+                    if (chat != null && chat.users.containsKey(ChatListProvider.username)) {
+                        chat.id = postSnapshot.key.toString();
+                        ChatListProvider.addChat(chat)
                     }
-                    val chatListAdapter = ChatListAdapter(this@ChatListActivity, ChatListProvider.chatList)
-                    lvChatList.adapter = chatListAdapter
-
                 }
-                override fun onCancelled(p0: DatabaseError) {
-
-                }
+                val chatListAdapter =
+                    ChatListAdapter(
+                        this@ChatListActivity,
+                        ChatListProvider.chatList
+                    )
+                lvChatList.adapter = chatListAdapter
 
             }
-            db.addValueEventListener(eventListener)
 
-        lvChatList.setOnItemClickListener{parent, view, position, id ->
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+
+        }
+        db.addValueEventListener(eventListener)
+
+        lvChatList.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(this, ChatDetailActivity::class.java)
             intent.putExtra("Chat_ID", ChatListProvider.chatList.get(position).id)
             intent.putExtra("Chat_Name", ChatListProvider.chatList.get(position).chatName)
@@ -66,7 +75,7 @@ class ChatListActivity : AppCompatActivity() {
 
 
 
-        lvChatList.setOnItemLongClickListener{ parent, view, position, _ ->
+        lvChatList.setOnItemLongClickListener { parent, view, position, _ ->
             val intent = Intent(this, EditChatActivity::class.java)
             intent.putExtra("Chat_ID", ChatListProvider.chatList.get(position).id)
             intent.putExtra("Chat_Name", ChatListProvider.chatList.get(position).chatName)
@@ -75,11 +84,7 @@ class ChatListActivity : AppCompatActivity() {
         }
 
 
-
-
         // NOTIFICATIONS
-
-
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -96,25 +101,19 @@ class ChatListActivity : AppCompatActivity() {
         }
 
 
-
         var i = 0;
         val dbMessages = FirebaseDatabase.getInstance().getReference("messages")
-        val eventListenerDbMessages = object : ValueEventListener{
+        val eventListenerDbMessages = object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 if (i++ != 0 && !ChatListProvider.CHATTING) {
                     displayNotification("ChatApp", "You may have new messages.")
                 }
             }
+
             override fun onCancelled(p0: DatabaseError) {
             }
         }
         dbMessages.addValueEventListener(eventListenerDbMessages)
-
-
-
-
-
-
 
 
     }

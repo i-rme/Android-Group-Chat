@@ -1,12 +1,14 @@
-package com.example.chatapp
+package com.example.chatapp.provider
 
-import android.util.Log
-import android.widget.Toast
 import com.example.chatapp.data.Message
 import com.example.chatapp.data.User
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+/**
+ * Chat provider to show the chat
+ * and get the it from the database
+ */
 
 object ChatProvider {
 
@@ -22,19 +24,17 @@ object ChatProvider {
     }
 
 
-    fun addUser(user: User){
+    fun addUser(user: User) {
         userList.add(user)
     }
-    fun addMessage(message: Message){
+
+    fun addMessage(message: Message) {
         messageList.add(message)
     }
-    fun deleteChat(){
 
-    }
+    fun removeUser(username: String, chatId: String) {
 
-    fun removeUser(username: String, chatId: String){
-
-        val database:DatabaseReference=FirebaseDatabase.getInstance().reference
+        val database: DatabaseReference = FirebaseDatabase.getInstance().reference
         database.child("chats").child(chatId).child("users").child(username).removeValue();
 
     }

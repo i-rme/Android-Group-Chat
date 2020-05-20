@@ -10,6 +10,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_register.*
 
+/**
+ * An activity for registering a user
+ */
 class RegisterActivity : AppCompatActivity() {
 
 
@@ -21,7 +24,11 @@ class RegisterActivity : AppCompatActivity() {
         getSupportActionBar()?.setTitle("Registration");  // provide compatibility
 
         btnSubmit.setOnClickListener() {
-            register(etUsername.text.toString(), etPassword.text.toString(), etAge.text.toString().toInt())
+            register(
+                etUsername.text.toString(),
+                etPassword.text.toString(),
+                etAge.text.toString().toInt()
+            )
             finish()
         }
 
@@ -29,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
 
     fun register(username: String, password: String, age: Int): Boolean {
 
-        if(true){
+        if (true) {
 
             var user = User(username, password, age)
             val db = Firebase.firestore
@@ -37,12 +44,17 @@ class RegisterActivity : AppCompatActivity() {
             users.document(user.username.toString()).set(user)
 
 
-            val toast = Toast.makeText(applicationContext, "New user registered", Toast.LENGTH_SHORT)
+            val toast =
+                Toast.makeText(applicationContext, "New user registered", Toast.LENGTH_SHORT)
             toast.show()
 
             return true
-        }else{
-            val toast = Toast.makeText(applicationContext, "Incorrect username or password", Toast.LENGTH_SHORT)
+        } else {
+            val toast = Toast.makeText(
+                applicationContext,
+                "Incorrect username or password",
+                Toast.LENGTH_SHORT
+            )
             toast.show()
 
             return false

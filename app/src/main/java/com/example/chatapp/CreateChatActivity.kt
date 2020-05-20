@@ -4,12 +4,17 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.chatapp.adapter.CustomArrayAdapterUser
 import com.example.chatapp.data.Chat
 import com.example.chatapp.data.User
+import com.example.chatapp.provider.ChatListProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_create_chat.*
 
+/**
+ * An activity for creating a chat
+ */
 class CreateChatActivity : AppCompatActivity() {
 
 
@@ -36,8 +41,13 @@ class CreateChatActivity : AppCompatActivity() {
                         )
                     )
                 }
-                    val userListAdapter = CustomArrayAdapterUser(this@CreateChatActivity, R.layout.row_element, allUsers)
-                    lvUsersOfNewChat.adapter = userListAdapter
+                val userListAdapter =
+                    CustomArrayAdapterUser(
+                        this@CreateChatActivity,
+                        R.layout.row_element,
+                        allUsers
+                    )
+                lvUsersOfNewChat.adapter = userListAdapter
             }
 
         lvUsersOfNewChat.setOnItemClickListener { parent, view, position, _ ->
@@ -56,15 +66,19 @@ class CreateChatActivity : AppCompatActivity() {
                 chatUsers.remove(allUsers[position])
                 lvUsersOfNewChat.getChildAt(position).setBackgroundColor(0x1b1b2f)
                 val toast1 =
-                    Toast.makeText(applicationContext, "User ${allUsers[position].username} removed", Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        applicationContext,
+                        "User ${allUsers[position].username} removed",
+                        Toast.LENGTH_SHORT
+                    )
                 toast1.show()
             }
 
         }
 
 
-        btnCreate.setOnClickListener(){
-            var chat= Chat(etNameNewChat.text.toString())
+        btnCreate.setOnClickListener() {
+            var chat = Chat(etNameNewChat.text.toString())
             ChatListProvider.postChat(chat, chatUsers)
             finish()
         }

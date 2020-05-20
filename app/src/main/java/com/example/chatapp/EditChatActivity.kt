@@ -4,14 +4,17 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.chatapp.adapter.CustomArrayAdapterUser
 import com.example.chatapp.data.Chat
 import com.example.chatapp.data.User
+import com.example.chatapp.provider.ChatListProvider
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import kotlinx.android.synthetic.main.activity_create_chat.*
-import kotlinx.android.synthetic.main.activity_detail_chat.*
 import kotlinx.android.synthetic.main.activity_edit_chat.*
 
+/**
+ * An activity to edit chat
+ */
 class EditChatActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +39,12 @@ class EditChatActivity : AppCompatActivity() {
                         )
                     )
                 }
-                val userListAdapter = CustomArrayAdapterUser(this@EditChatActivity, R.layout.row_element, allUsers)
+                val userListAdapter =
+                    CustomArrayAdapterUser(
+                        this@EditChatActivity,
+                        R.layout.row_element,
+                        allUsers
+                    )
                 lvEdit.adapter = userListAdapter
             }
 
@@ -47,12 +55,6 @@ class EditChatActivity : AppCompatActivity() {
             if (!chatUsers.contains(allUsers[position])) {
                 chatUsers.add(allUsers[position])
 
-//                val toast = Toast.makeText(
-//                    applicationContext,
-//                    "User: " + allUsers[position].username + " added",
-//                    Toast.LENGTH_SHORT
-//                )
-//                toast.show()
             } else {
                 val toast1 =
                     Toast.makeText(applicationContext, "User already added", Toast.LENGTH_SHORT)
@@ -63,26 +65,12 @@ class EditChatActivity : AppCompatActivity() {
         }
 
 
-        btnEdit.setOnClickListener(){
-            var chat= Chat(etEditName.text.toString())
+        btnEdit.setOnClickListener() {
+            var chat = Chat(etEditName.text.toString())
             val chatId = intent.getStringExtra("Chat_ID")
-            ChatListProvider.updateChat(chat, chatUsers,chatId)
+            ChatListProvider.updateChat(chat, chatUsers, chatId)
             finish()
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }

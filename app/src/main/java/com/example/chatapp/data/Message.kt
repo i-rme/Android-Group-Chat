@@ -1,5 +1,9 @@
 package com.example.chatapp.data
 
-data class Message (
+/**
+ * Data message
+ */
+data class Message(
     val user: String,
-    val text: String )
+    val text: String
+)

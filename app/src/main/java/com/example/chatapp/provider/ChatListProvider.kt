@@ -1,15 +1,16 @@
-package com.example.chatapp
+package com.example.chatapp.provider
 
-import android.util.Log
-import android.widget.Toast
 import com.example.chatapp.data.Chat
-import com.example.chatapp.data.Message
 import com.example.chatapp.data.User
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-
-object ChatListProvider{
+/**
+ * Chat list provider to get the
+ * information from the database
+ * and save it here
+ */
+object ChatListProvider {
     private lateinit var database: DatabaseReference
     var chatList = mutableListOf<Chat>()
     lateinit var username: String
@@ -27,21 +28,16 @@ object ChatListProvider{
             stringMap.put(user.username.toString(), "")
         }
         chatList.add(chat)
-        database.child("chats").child(pushedRef.getKey().toString()).child("users").setValue(stringMap)
+        database.child("chats").child(pushedRef.getKey().toString()).child("users")
+            .setValue(stringMap)
 
     }
 
-    fun createChat(chatName: String, user: User){
-        //ChatProvider.addUser(user)
-        //chatList.add(Chat("idhere", chatName, ChatProvider.userList, ChatProvider.messageList))
-    }
-    fun addChat(chat: Chat){
+    fun addChat(chat: Chat) {
         chatList.add(chat)
     }
 
-
-
-    fun updateChat(chat: Chat, userlist: MutableList<User>,chatid: String) {
+    fun updateChat(chat: Chat, userlist: MutableList<User>, chatid: String) {
 
         val database = FirebaseDatabase.getInstance().reference
         var pushedRef = database.child("chats").child(chatid)
@@ -53,7 +49,8 @@ object ChatListProvider{
             stringMap.put(user.username.toString(), "")
         }
         chatList.add(chat)
-        database.child("chats").child(pushedRef.getKey().toString()).child("users").setValue(stringMap)
+        database.child("chats").child(pushedRef.getKey().toString()).child("users")
+            .setValue(stringMap)
 
     }
 }
