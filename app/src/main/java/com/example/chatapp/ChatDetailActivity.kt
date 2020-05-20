@@ -1,21 +1,20 @@
 package com.example.chatapp
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.chatapp.data.Chat
 import com.example.chatapp.data.Message
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_detail_chat.*
-import kotlinx.android.synthetic.main.content_chat_list.*
 
 class ChatDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        ChatListProvider.CHATTING = true
 
         val chatId = intent.getStringExtra("Chat_ID")
         val chatName = intent.getStringExtra("Chat_Name")
@@ -69,5 +68,14 @@ class ChatDetailActivity : AppCompatActivity() {
             toast.show()
             finish()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        ChatListProvider.CHATTING = false
+    }
+    override fun onResume() {
+        super.onResume()
+        ChatListProvider.CHATTING = true
     }
 }
