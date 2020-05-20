@@ -46,12 +46,12 @@ class CreateChatActivity : AppCompatActivity() {
             if (!chatUsers.contains(allUsers[position])) {
                 chatUsers.add(allUsers[position])
 
-//                val toast = Toast.makeText(
-//                    applicationContext,
-//                    "User: " + allUsers[position].username + " added",
-//                    Toast.LENGTH_SHORT
-//                )
-//                toast.show()
+                val toast = Toast.makeText(
+                    applicationContext,
+                    "User: " + allUsers[position].username + " added",
+                    Toast.LENGTH_SHORT
+                )
+                toast.show()
             } else {
                 chatUsers.remove(allUsers[position])
                 lvUsersOfNewChat.getChildAt(position).setBackgroundColor(0x1b1b2f)
@@ -59,7 +59,6 @@ class CreateChatActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, "User ${allUsers[position].username} removed", Toast.LENGTH_SHORT)
                 toast1.show()
             }
-
 
         }
 
